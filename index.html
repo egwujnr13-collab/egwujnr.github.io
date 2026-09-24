@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fresh Cut Barbershop</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0d0d0d;
+            color: white;
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: #151515;
+            padding: 18px 10px;
+            text-align: center;
+            border-bottom: 1px solid #333;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #f5b400;
+        }
+
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            padding: 40px 20px;
+            background:
+                linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.75)),
+                url("https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=1200&q=80");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            margin-bottom: 10px;
+        }
+
+        .gold {
+            color: #f5b400;
+        }
+
+        .hero p {
+            font-size: 20px;
+            line-height: 1.6;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 15px 25px;
+            background: #f5b400;
+            color: #111;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        section {
+            padding: 70px 20px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .title h2 {
+            font-size: 35px;
+        }
+
+        .title p {
+            color: #bbb;
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: #181818;
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid #333;
+        }
+
+        .card h3 {
+            margin-top: 0;
+        }
+
+        .price {
+            color: #f5b400;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .about {
+            text-align: center;
+            max-width: 700px;
+        }
+
+        .contact {
+            text-align: center;
+            background: #181818;
+            border-radius: 15px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: #050505;
+            color: #aaa;
+        }
+
+        @media (max-width: 700px) {
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .services {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery img {
+                height: 250px;
+            }
+
+            nav a {
+                margin: 0 6px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <header class="hero" id="home">
+        <div class="hero-content">
+            <p class="gold">WELCOME TO</p>
+
+            <h1>Fresh Cut <span class="gold">Barbershop</span></h1>
+
+            <p>
+                Clean cuts. Fresh style. Every time.
+            </p>
+
+            <a class="button"
+               href="https://wa.me/2348000000000?text=Hello%20I%20want%20to%20book%20an%20appointment">
+                📱 Book an Appointment
+            </a>
+        </div>
+    </header>
+
+    <section id="services">
+
+        <div class="title">
+            <h2>Our Services</h2>
+            <p>Look good. Feel great.</p>
+        </div>
+
+        <div class="services">
+
+            <div class="card">
+                <h3>💈 Haircut</h3>
+                <p>Clean and professional haircut.</p>
+                <div class="price">₦2,000</div>
+            </div>
+
+            <div class="card">
+                <h3>🧔 Beard Trim</h3>
+                <p>Sharp and clean beard styling.</p>
+                <div class="price">₦1,000</div>
+            </div>
+
+            <div class="card">
+                <h3>✂️ Hair Styling</h3>
+                <p>Fresh styles made for you.</p>
+                <div class="price">₦3,000</div>
+            </div>
+
+            <div class="card">
+                <h3>🔥 Haircut + Beard</h3>
+                <p>Complete grooming package.</p>
+                <div class="price">₦2,500</div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="gallery">
+
+        <div class="title">
+            <h2>Our Gallery</h2>
+            <p>Fresh styles from our barbershop.</p>
+        </div>
+
+        <div class="gallery">
+
+            <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=800&q=80">
+
+            <img src="https://images.unsplash.com/photo-1622286346003-cf3d8f2f5c6d?auto=format&fit=crop&w=800&q=80">
+
+            <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=800&q=80">
+
+        </div>
+
+    </section>
+
+    <section id="about">
+
+        <div class="about">
+            <div class="title">
+                <h2>About Us</h2>
+            </div>
+
+            <p>
+                Fresh Cut Barbershop is focused on clean cuts,
+                great style and excellent customer service.
+                Come in looking ordinary and leave looking fresh.
+            </p>
+        </div>
+
+    </section>
+
+    <section id="contact">
+
+        <div class="contact">
+            <div class="title">
+                <h2>Contact Us</h2>
+            </div>
+
+            <p>📞 08067100360</p>
+            <p>📍 Edu Erei</p>
+
+            <a class="button"
+               href="https://wa.me/2348000000000?text=Hello%20Fresh%20Cut%20Barbershop">
+                Chat on WhatsApp
+            </a>
+        </div>
+
+    </section>
+
+    <footer>
+        © 2026 Fresh Cut Barbershop
+    </footer>
+
+</body>
+</html>
