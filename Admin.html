@@ -28,15 +28,13 @@
         label {
             display: block;
             margin-top: 20px;
-            margin-bottom: 8px;
         }
 
         input {
             width: 100%;
             padding: 12px;
+            margin-top: 8px;
             box-sizing: border-box;
-            border-radius: 6px;
-            border: none;
         }
 
         button {
@@ -48,27 +46,45 @@
             border-radius: 7px;
             font-weight: bold;
         }
+
+        #message {
+            text-align: center;
+            margin-top: 20px;
+        }
     </style>
 </head>
 
 <body>
 
-    <div class="box">
+<div class="box">
 
-        <h1>Fresh Cut Admin</h1>
+    <h1>Fresh Cut Admin</h1>
 
-        <label>Service Name</label>
-        <input type="text" placeholder="Haircut">
+    <label>Service Name</label>
+    <input id="serviceName" type="text" value="Haircut">
 
-        <label>Price</label>
-        <input type="number" placeholder="2000">
+    <label>Price (₦)</label>
+    <input id="servicePrice" type="number" value="2000">
 
-        <label>WhatsApp Number</label>
-        <input type="text" placeholder="2348000000000">
+    <button onclick="saveService()">Save Changes</button>
 
-        <button>Save Changes</button>
+    <div id="message"></div>
 
-    </div>
+</div>
+
+<script>
+function saveService() {
+
+    const name = document.getElementById("serviceName").value;
+    const price = document.getElementById("servicePrice").value;
+
+    localStorage.setItem("serviceName", name);
+    localStorage.setItem("servicePrice", price);
+
+    document.getElementById("message").innerText =
+        "✅ Changes saved!";
+}
+</script>
 
 </body>
-</html>
+        </html>
