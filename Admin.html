@@ -85,6 +85,21 @@ function saveService() {
         "✅ Changes saved!";
 }
 </script>
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+    import { getFirestore } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
+    const firebaseConfig = {
+        apiKey: "AIzaSyDyND0HmX0xxGEnWWPQnTBMKD9XNFRSvNo",
+        authDomain: "fresh-cut-barbershop.firebaseapp.com",
+        projectId: "fresh-cut-barbershop",
+        storageBucket: "fresh-cut-barbershop.firebasestorage.app",
+        messagingSenderId: "834604347956",
+        appId: "1:834604347956:web:a2b33ed0e097cf438f1061"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+</script>
 </body>
         </html>
