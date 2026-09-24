@@ -1,13 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Fresh Cut Admin</title>
 
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
+            margin: 0;
             font-family: Arial, sans-serif;
-            background: #111;
+            background: #0d0d0d;
             color: white;
             padding: 20px;
         }
@@ -16,90 +23,181 @@
             max-width: 500px;
             margin: 40px auto;
             background: #1b1b1b;
-            padding: 25px;
-            border-radius: 12px;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #333;
         }
 
         h1 {
-            color: #f5b400;
             text-align: center;
+            color: #f5b400;
+            margin-bottom: 30px;
         }
 
         label {
             display: block;
             margin-top: 20px;
+            margin-bottom: 8px;
+            font-weight: bold;
         }
 
         input {
             width: 100%;
-            padding: 12px;
-            margin-top: 8px;
-            box-sizing: border-box;
+            padding: 14px;
+            border: none;
+            border-radius: 7px;
+            font-size: 16px;
         }
 
         button {
             width: 100%;
             margin-top: 25px;
-            padding: 14px;
+            padding: 15px;
             background: #f5b400;
+            color: #111;
             border: none;
             border-radius: 7px;
+            font-size: 16px;
             font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:active {
+            transform: scale(0.98);
         }
 
         #message {
             text-align: center;
             margin-top: 20px;
+            font-weight: bold;
         }
     </style>
 </head>
 
 <body>
 
-<div class="box">
+    <div class="box">
 
-    <h1>Fresh Cut Admin</h1>
+        <h1>Fresh Cut Admin</h1>
 
-    <label>Service Name</label>
-    <input id="serviceName" type="text" value="Haircut">
+        <label for="serviceName">Service Name</label>
+        <input
+            id="serviceName"
+            type="text"
+            value="Haircut"
+        >
 
-    <label>Price (₦)</label>
-    <input id="servicePrice" type="number" value="2000">
+        <label for="servicePrice">Price (₦)</label>
+        <input
+            id="servicePrice"
+            type="number"
+            value="2000"
+        >
 
-    <button onclick="saveService()">Save Changes</button>
+        <button id="saveButton">
+            Save Changes
+        </button>
 
-    <div id="message"></div>
+        <div id="message"></div>
 
-</div>
+    </div>
 
-<script>
-function saveService() {
 
-    const name = document.getElementById("serviceName").value;
-    const price = document.getElementById("servicePrice").value;
+    <script type="module">
 
-    localStorage.setItem("serviceName", name);
-    localStorage.setItem("servicePrice", price);
+        import { initializeApp }
+        from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
-    document.getElementById("message").innerText =
-        "✅ Changes saved!";
-}
-</script>
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
-    import { getFirestore } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+        import {
+            getFirestore,
+            doc,
+            setDoc
+        }
+        from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
-    const firebaseConfig = {
-        apiKey: "AIzaSyDyND0HmX0xxGEnWWPQnTBMKD9XNFRSvNo",
-        authDomain: "fresh-cut-barbershop.firebaseapp.com",
-        projectId: "fresh-cut-barbershop",
-        storageBucket: "fresh-cut-barbershop.firebasestorage.app",
-        messagingSenderId: "834604347956",
-        appId: "1:834604347956:web:a2b33ed0e097cf438f1061"
-    };
 
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-</script>
+        // Firebase configuration
+        const firebaseConfig = {
+
+            apiKey: "AIzaSyDyND0HmX0xxGEnWWPQnTBMKD9XNFRSvNo",
+
+            authDomain:
+                "fresh-cut-barbershop.firebaseapp.com",
+
+            projectId:
+                "fresh-cut-barbershop",
+
+            storageBucket:
+                "fresh-cut-barbershop.firebasestorage.app",
+
+            messagingSenderId:
+                "834604347956",
+
+            appId:
+                "1:834604347956:web:a2b33ed0e097cf438f1061"
+        };
+
+
+        // Start Firebase
+        const app = initializeApp(firebaseConfig);
+
+
+        // Connect to your Firestore database
+        const db = getFirestore(app, "fresh-cut-db");
+
+
+        // Save button
+        document
+            .getElementById("saveButton")
+            .addEventListener("click", async function () {
+
+                const name =
+                    document.getElementById("serviceName").value;
+
+                const price =
+                    document.getElementById("servicePrice").value;
+
+                const message =
+                    document.getElementById("message");
+
+
+                if (!name || !price) {
+
+                    message.innerText =
+                        "❌ Please enter the service and price.";
+
+                    return;
+                }
+
+
+                try {
+
+                    await setDoc(
+                        doc(db, "services", "haircut"),
+                        {
+                            name: name,
+                            price: price
+                        }
+                    );
+
+
+                    message.innerText =
+                        "✅ Changes saved to Firebase!";
+
+                }
+
+                catch (error) {
+
+                    console.error(error);
+
+                    message.innerText =
+                        "❌ Error: " + error.message;
+
+                }
+
+            });
+
+    </script>
+
 </body>
-        </html>
+</html>
