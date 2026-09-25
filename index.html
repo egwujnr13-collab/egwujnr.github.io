@@ -298,6 +298,53 @@
     <footer>
         © 2026 Fresh Cut Barbershop
     </footer>
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+    import {
+        getFirestore,
+        doc,
+        getDoc
+    } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
+    const firebaseConfig = {
+        apiKey: "AIzaSyDyND0HmX0xxGEnWWPQnTBMKD9XNFRSvNo",
+        authDomain: "fresh-cut-barbershop.firebaseapp.com",
+        projectId: "fresh-cut-barbershop",
+        storageBucket: "fresh-cut-barbershop.firebasestorage.app",
+        messagingSenderId: "834604347956",
+        appId: "1:834604347956:web:a2b33ed0e097cf438f1061"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    async function loadPrice() {
+        try {
+            const serviceRef = doc(db, "services", "haircut");
+            const serviceSnap = await getDoc(serviceRef);
+
+            if (serviceSnap.exists()) {
+                const data = serviceSnap.data();
+                const price = Number(data.price).toLocaleString("en-NG");
+
+                document.querySelectorAll("*").forEach(element => {
+                    if (
+                        element.children.length === 0 &&
+                        (element.textContent.includes("₦2,000") ||
+                         element.textContent.includes("₦2000") ||
+                         element.textContent.trim() === "2000")
+                    ) {
+                        element.textContent =
+                            element.textContent.replace(/₦?2,?000/g, "₦" + price);
+                    }
+                });
+            }
+        } catch (error) {
+            console.error("Firebase error:", error);
+        }
+    }
+
+    loadPrice();
+</script>
 </body>
 </html>
