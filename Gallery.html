@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Fresh Cut Barbershop - Gallery</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0d0d0d;
+            color: white;
+        }
+
+        header {
+            text-align: center;
+            padding: 35px 20px;
+            background: #111;
+            border-bottom: 2px solid #f5b400;
+        }
+
+        header h1 {
+            margin: 0;
+            color: #f5b400;
+            font-size: 36px;
+        }
+
+        header p {
+            color: #ddd;
+            margin-top: 10px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            padding: 20px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 2px solid #222;
+            transition: 0.3s;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.02);
+            border-color: #f5b400;
+        }
+
+        .back {
+            display: block;
+            width: fit-content;
+            margin: 20px auto 40px;
+            padding: 14px 25px;
+            background: #f5b400;
+            color: #111;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        @media (min-width: 700px) {
+            .gallery {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Fresh Cut Barbershop</h1>
+        <p>Our Gallery</p>
+    </header>
+
+    <section class="gallery">
+
+        <img src="gallery1.jpg" alt="Fresh haircut">
+        <img src="gallery2.jpg" alt="Clean fade">
+        <img src="gallery3.jpg" alt="Beard styling">
+        <img src="gallery4.jpg" alt="Modern haircut">
+        <img src="gallery5.jpg" alt="Barbershop interior">
+        <img src="gallery6.jpg" alt="Professional barber">
+        <img src="gallery7.jpg" alt="Fresh fade">
+        <img src="gallery8.jpg" alt="Hair design">
+        <img src="gallery9.jpg" alt="Barbershop">
+        <img src="gallery10.jpg" alt="Fresh Cut style">
+        <img src="gallery11.jpg" alt="Haircut design">
+        <img src="gallery12.jpg" alt="Fresh Cut Barbershop">
+
+    </section>
+
+    <a class="back" href="index.html">← Back to Home</a>
+
+</body>
+          </html>
